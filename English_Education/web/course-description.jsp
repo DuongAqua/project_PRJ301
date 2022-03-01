@@ -1,11 +1,4 @@
-<%-- 
-    Document   : course-description
-    Created on : Feb 28, 2022, 1:30:50 AM
-    Author     : Admin
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <div class="mb-5">
+<div class="mb-5">
               <h3 class="text-black">Course Description</h3>
               <p class="mb-4">
                 <strong class="text-black mr-3">Schedule: </strong> MWF 9:30 - 11:00

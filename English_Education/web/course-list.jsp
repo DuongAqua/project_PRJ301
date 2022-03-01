@@ -1,11 +1,3 @@
-<%-- 
-    Document   : list-course
-    Created on : Feb 28, 2022, 1:14:12 AM
-    Author     : Admin
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
     <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
       <div class="container">
         <div class="row">

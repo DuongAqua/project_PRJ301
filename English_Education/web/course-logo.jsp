@@ -1,9 +1,3 @@
-<%-- 
-    Document   : logo-design-couse
-    Created on : Feb 28, 2022, 1:24:43 AM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <div class="intro-section single-cover" id="home-section">
       

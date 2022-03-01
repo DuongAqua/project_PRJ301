@@ -1,10 +1,4 @@
-<%-- 
-    Document   : list-program
-    Created on : Feb 28, 2022, 1:19:06 AM
-    Author     : Admin
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
     <div class="site-section" id="programs-section">s
       <div class="container">
         <div class="row mb-5 justify-content-center">

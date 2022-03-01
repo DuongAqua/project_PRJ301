@@ -1,10 +1,3 @@
-<%-- 
-    Document   : list-teacher
-    Created on : Feb 28, 2022, 1:21:44 AM
-    Author     : Admin
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="site-section" id="teachers-section">
       <div class="container">
 
