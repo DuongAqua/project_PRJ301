@@ -1,13 +1,4 @@
-<%-- 
-    Document   : header
-    Created on : Feb 28, 2022, 12:50:00 AM
-    Author     : Admin
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
-    <!-- Header -->
+<!-- Header -->
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
       
       <div class="container-fluid">
