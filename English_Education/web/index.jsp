@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     
-    <jsp:include page="../style/css.jsp"/>
+    <jsp:include page="view/style/css.jsp"/>
     
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -31,12 +31,12 @@
    
     
     <!--Header -->
-    <jsp:include page="../layout/header/header.jsp"/>
+    <jsp:include page="view/layout/header/header.jsp"/>
     
     <!--Header -->
 
      <!--Intro -->
-     <jsp:include page="../../intro.jsp"/>
+     <jsp:include page="view/layout/header/intro.jsp"/>
     
     <!--Intro -->
 
@@ -50,17 +50,17 @@
         </div>
       </div>
     </div>
-    <jsp:include page="../course/course-list.jsp"/>
+    <jsp:include page="view/course/course-list.jsp"/>
     
     <!--List-Course -->
     
     <!--List-Program -->
-    <jsp:include page="../../program-list.jsp"/>
+    <jsp:include page="view/program/program-list.jsp"/>
     
     <!--List-Program -->
 
     <!--List-Teacher -->
-    <jsp:include page="../../teacher-list.jsp"/>
+    <jsp:include page="view/teacher/teacher-list.jsp"/>
     
     <!--List-Teacher -->
 
@@ -199,14 +199,14 @@
     
      
     <!-- Footer -->
-    <jsp:include page="../layout/footer/footer.jsp"/>
+    <jsp:include page="view/layout/footer/footer.jsp"/>
             <!-- Footer -->
 
   
     
   </div> <!-- .site-wrap -->
 
-  <jsp:include page="../style/js.jsp"/>
+  <jsp:include page="view/style/js.jsp"/>
     
   </body>
 </html>

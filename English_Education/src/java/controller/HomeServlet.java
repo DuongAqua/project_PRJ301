@@ -31,7 +31,7 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("intro.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
             /* TODO output your page here. You may use following sample code. */
             
         }
