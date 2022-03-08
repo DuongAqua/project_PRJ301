@@ -1,4 +1,5 @@
-  <script src="js/jquery-3.3.1.min.js"></script>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
@@ -13,4 +14,4 @@
   <script src="js/jquery.sticky.js"></script>
 
   
-  <script src="../../js/main.js"></script>
+  <script src="js/main.js"></script>

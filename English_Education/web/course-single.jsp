@@ -1,9 +1,3 @@
-<%-- 
-    Document   : course-single
-    Created on : Feb 25, 2022, 9:43:43 AM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,23 +8,7 @@
 
 
         <!-- <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet"> -->
-        <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/jquery-ui.css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-        <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-
-        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-        <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-        <link rel="stylesheet" href="css/aos.css">
-
-        <link rel="stylesheet" href="css/style.css">
+        <jsp:include page="view/style/css.jsp"/>
 
     </head>
     <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -47,10 +25,10 @@
             </div>
 
             <!-- Header -->
-            <jsp:include page="header.jsp"/>
+            <jsp:include page="view/layout/header/header.jsp"/>
             <!-- Header  -->
             <!-- logo-design-course -->
-            <jsp:include page="course-logo.jsp"/>
+            <jsp:include page="view/course/course-logo.jsp"/>
             <!-- logo-design-course  -->
 
             <div class="site-section">
@@ -59,7 +37,7 @@
                         <div class="col-lg-8 mb-5">
 
                             <!-- Course Description -->
-                            <jsp:include page="course-description.jsp"/>
+                            <jsp:include page="view/course/course-description.jsp"/>
                             <!-- Course Description -->
 
                             <div class="pt-5">
@@ -179,7 +157,7 @@
                         </div>
                         <div class="col-lg-4 pl-lg-5">
                             <!-- course-instructor -->
-                            <jsp:include page="course-instructor.jsp"/>
+                            <jsp:include page="view/course/course-instructor.jsp"/>
                             <!-- course-instructor -->
 
                         </div>
@@ -197,32 +175,17 @@
                 </div>
             </div>
 
-            <jsp:include page="course-list.jsp"/>
+            <jsp:include page="view/course/course-list.jsp"/>
             <!-- More Courses -->
 
             <!-- Footer -->
-            <jsp:include page="footer.jsp"/>
+            <jsp:include page="view/layout/footer/footer.jsp"/>
             <!-- Footer -->
 
 
         </div> <!-- .site-wrap -->
 
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.stellar.min.js"></script>
-        <script src="js/jquery.countdown.min.js"></script>
-        <script src="js/bootstrap-datepicker.min.js"></script>
-        <script src="js/jquery.easing.1.3.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/jquery.fancybox.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-
-
-        <script src="js/main.js"></script>
+        <jsp:include page="view/style/js.jsp"/>
 
     </body>
 </html>

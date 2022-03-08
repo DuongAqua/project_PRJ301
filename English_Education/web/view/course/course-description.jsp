@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="mb-5">
               <h3 class="text-black">Course Description</h3>
               <p class="mb-4">

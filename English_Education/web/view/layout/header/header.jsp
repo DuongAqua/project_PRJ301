@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Header -->
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
       

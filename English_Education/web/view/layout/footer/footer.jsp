@@ -1,9 +1,3 @@
-<%-- 
-    Document   : footer
-    Created on : Feb 28, 2022, 1:47:04 AM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <footer class="footer-section bg-light">
       <div class="container">

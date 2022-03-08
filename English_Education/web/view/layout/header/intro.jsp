@@ -1,9 +1,3 @@
-<%-- 
-    Document   : intro
-    Created on : Feb 28, 2022, 1:08:02 AM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="intro-section" id="home-section">
       

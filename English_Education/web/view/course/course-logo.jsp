@@ -1,4 +1,5 @@
-    <div class="intro-section single-cover" id="home-section">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<div class="intro-section single-cover" id="home-section">
       
       <div class="slide-1 " style="background-image: url('images/img_2.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">

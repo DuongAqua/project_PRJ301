@@ -1,4 +1,5 @@
-    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
       <div class="container">
         <div class="row">
             <!-- list -->
@@ -6,7 +7,7 @@
               <!-- course -->
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.jsp"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
+                  <a href="course-single.jsp"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$20</span>
