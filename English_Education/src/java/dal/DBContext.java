@@ -3,24 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAL;
+package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author ADMIN
+ * @author Admin
  */
 public class DBContext {
-
-     Connection connection;
+    Connection connection;
 
     public DBContext() {
         try {
@@ -35,28 +31,4 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-//    public ArrayList<Student> getStudents() {
-//        ArrayList<Student> students = new ArrayList<>();
-//        try {
-//
-//            String sql = "select * from student";
-//            PreparedStatement stm = connection.prepareStatement(sql);
-//            ResultSet rs = stm.executeQuery();
-//
-//            while (rs.next()) {
-//                Student s = new Student();
-//                s.setId(rs.getInt("id"));
-//                s.setName(rs.getString("name"));
-//                s.setGender(rs.getBoolean("gender"));
-//                s.setDOB((rs.getDate("dob")));
-//                s.setPhone(rs.getString("phone"));
-//                students.add(s);
-//            }
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//        return students;
-//    }
 }

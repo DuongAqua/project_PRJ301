@@ -14,17 +14,14 @@ import model.Account;
  *
  * @author Admin
  */
-public class AccountDB extends DBContext {
+public class AccountDB extends DBContext{
     public static void main(String[] args) {
-        AccountDB accDB = AccountDB();
+        AccountDB accDB = new AccountDB();
         System.out.println("" + accDB );
     }
 
-    private static AccountDB() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-    String sql= "select * from Account a where a.Username like ?";
+   
     
     public ArrayList<Account> getStudents() {
         ArrayList<Account> accounts = new ArrayList<>();
@@ -37,11 +34,19 @@ public class AccountDB extends DBContext {
             while (rs.next()) {
                 Account a = new Account();
                 a.setId(rs.getInt("id"));
+                a.setUsername(rs.getString("username"));
+                a.setPassword(rs.getString("password"));
+                a.setType(rs.getInt("type"));
+                a.setCreate_at(rs.getString("create_at"));
+                
                 a.setFirstname(rs.getString("firstname"));
                 a.setLastname(rs.getString("lastname"));
                 a.setGender(rs.getBoolean("gender"));
                 a.setDob((rs.getDate("dob")));
                 a.setPhone(rs.getString("phone"));
+                a.setImg(rs.getString("img"));
+        
+                        
                 accounts.add(a);
             }
 
