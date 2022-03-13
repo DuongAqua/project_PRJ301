@@ -17,13 +17,14 @@ import model.Account;
 public class AccountDB extends DBContext{
     public static void main(String[] args) {
         AccountDB accDB = new AccountDB();
-        System.out.println("" + accDB );
+        System.out.println("" + accDB.getAccounts().get(0).getUsername() );
+        System.out.println("" + accDB.getAccount("admin" , "admin").getLastname() );
     }
 
     
    
     
-    public ArrayList<Account> getStudents() {
+    public ArrayList<Account> getAccounts() {
         ArrayList<Account> accounts = new ArrayList<>();
         try {
 
@@ -54,5 +55,39 @@ public class AccountDB extends DBContext{
             ex.printStackTrace();
         }
         return accounts;
+    }
+    
+     public Account getAccount(String username, String password) {
+        
+        try {
+
+            String sql = "select * from Account a where a.Username like ? and a.[Password] like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Account a = new Account();
+                a.setId(rs.getInt("id"));
+                a.setUsername(rs.getString("username"));
+                a.setPassword(rs.getString("password"));
+                a.setType(rs.getInt("type"));
+                a.setCreate_at(rs.getString("create_at"));
+                
+                a.setFirstname(rs.getString("firstname"));
+                a.setLastname(rs.getString("lastname"));
+                a.setGender(rs.getBoolean("gender"));
+                a.setDob((rs.getDate("dob")));
+                a.setPhone(rs.getString("phone"));
+                a.setImg(rs.getString("img"));
+        
+                return a;        
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

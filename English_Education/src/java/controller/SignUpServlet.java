@@ -5,20 +5,18 @@
  */
 package controller;
 
-import dal.AccountDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Account;
 
 /**
  *
  * @author Admin
  */
-public class LoginServlet extends HttpServlet {
+public class SignUpServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +35,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet SignUpServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SignUpServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,10 +56,9 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+//        processRequest(request, response);
 
-        request.getRequestDispatcher("login.jsp").forward(request, response);
-
+    request.getRequestDispatcher("sign-up.jsp").forward(request, response);
     }
 
     /**
@@ -75,30 +72,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        AccountDB accDB = new AccountDB();
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        if (username != null && password != null) {
-            Account a = accDB.getAccount(username, password);
-
-            if (a != null) {
-                request.getSession().setAttribute("user", a);
-                response.sendRedirect("home");
-            } else {
-
-                request.getRequestDispatcher("login").include(request, response);
-                out.println("<script>\n"
-                        + "                    \n"
-                        + "                    alert(\"Wrong Username or Password\");\n"
-                        + "                </script>");
-
-            }
-
-        }
-
+        processRequest(request, response);
     }
 
     /**

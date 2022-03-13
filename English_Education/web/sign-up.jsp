@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Mar 13, 2022, 3:26:19 PM
+    Document   : signUp
+    Created on : Mar 13, 2022, 6:25:22 PM
     Author     : Admin
 --%>
 
@@ -54,17 +54,42 @@
                        
                         
                         <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                            <form action="" method="post" class="form-box">
-                                <h3 class="h4 text-black mb-4">Login</h3>
+                             <form action="" method="post" class="form-box">
+                                <h3 class="h4 text-black mb-4">Sign Up</h3>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="username" name = "username">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="password" name = "password">
+                                    <input type="text" class="form-control" placeholder="first name" name="firstname"> 
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary btn-pill" value="Login"> <a href="sign-up" Style="margin-left: 30px"  > You don't have Account?</a>
+                                    <input type="text" class="form-control" placeholder="last name" name="lastname"> 
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Username" name="username">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" name="password">
+                                </div>
+                                
+                                 <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Re-Password">
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <input type="date" class="form-control" placeholder="Date of Birth" name="dob">
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" placeholder="phone" name="phone">
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" placeholder="image" name="img">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-pill" value="Sign up">          <a href="login" Style="margin-left: 30px"  > You have an Account?</a>
                                 </div>
                             </form>
 
@@ -72,7 +97,7 @@
                     </div>
                 </div>
                 
-              
+                
                 
             </div>
         </div>
@@ -81,7 +106,7 @@
         
 </div>
 
-   
+    
     <!--Login -->
 
 
