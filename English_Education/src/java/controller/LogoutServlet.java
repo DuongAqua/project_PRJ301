@@ -5,20 +5,18 @@
  */
 package controller;
 
-import dal.AccountDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Account;
 
 /**
  *
  * @author Admin
  */
-public class LoginServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +35,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet LogoutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,14 +56,9 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        if(request.getSession().getAttribute("user")!=null){
-            response.sendRedirect("home");
-        }else{        
-        request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        
-
+//        processRequest(request, response);
+        request.getSession().removeAttribute("user");
+        response.sendRedirect("login");
     }
 
     /**
@@ -79,31 +72,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        AccountDB accDB = new AccountDB();
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        if (username != null && password != null) {
-            Account a = accDB.getAccount(username, password);
-
-            if (a != null) {
-                request.getSession().setAttribute("user", a);
-                response.sendRedirect("home");
-            } else {
-
-                
-                out.println("<script>\n"
-                        + "                    \n"
-                        + "                    window.alert(\"Wrong Username or Password\");\n"
-                        + "                </script>");
-//                request.getRequestDispatcher("login").include(request, response);
-                response.sendRedirect("login");
-            }
-
-        }
-
+        processRequest(request, response);
     }
 
     /**

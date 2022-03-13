@@ -5,12 +5,14 @@
  */
 package controller;
 
+import dal.AccountDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  *
@@ -58,7 +60,7 @@ public class SignUpServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
 
-    request.getRequestDispatcher("sign-up.jsp").forward(request, response);
+        request.getRequestDispatcher("sign-up.jsp").forward(request, response);
     }
 
     /**
@@ -72,7 +74,25 @@ public class SignUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("utf-8");
+        AccountDB accDB = new AccountDB();
+        
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");;
+        String DOB = request.getParameter("dob");
+        String gender = request.getParameter("gender");
+        String phone = request.getParameter("phone");
+        String img = request.getParameter("img");
+        
+        accDB.createAccount(username, password, firstName, lastName, DOB, gender, phone, img);
+        
+        
+        Account a =  accDB.getAccount(username, password);
+        request.getSession().setAttribute("user", a);
+        
+        response.sendRedirect("home");
     }
 
     /**

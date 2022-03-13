@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/src/java/controller/LoginServlet.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/web/view/layout/footer/footer.jsp</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/src/java/dal/DBContext.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/src/java/dal/AccountDB.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/src/java/controller/HomeServlet.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/web/login.jsp</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/src/java/model/Account.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/web/sign-up.jsp</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/web/index.jsp</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/src/java/controller/SignUpServlet.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/project_PRJ301/English_Education/web/view/layout/header/header.jsp</file>
+        </group>
     </open-files>
 </project-private>

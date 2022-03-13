@@ -54,7 +54,7 @@
                        
                         
                         <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                            <form action="" method="post" class="form-box">
+                            <form action="login" method="post" class="form-box">
                                 <h3 class="h4 text-black mb-4">Login</h3>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="username" name = "username">
