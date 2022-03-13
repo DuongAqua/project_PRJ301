@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class DBContext {
 
-    private Connection connection;
+     Connection connection;
 
     public DBContext() {
         try {
@@ -35,25 +35,7 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static void main(String[] args) {
-        DBContext db = new DBContext();
-        
-        System.out.println(""+ db.abc());
-    }
-    public int abc(){
-        try {
-            String sql ="select * from Guests ;"  ;
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
-            
-            while(rs.next()){
-                return rs.getInt(1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
+
 //    public ArrayList<Student> getStudents() {
 //        ArrayList<Student> students = new ArrayList<>();
 //        try {

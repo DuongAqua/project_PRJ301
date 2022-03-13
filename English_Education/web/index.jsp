@@ -36,7 +36,7 @@
     <!--Header -->
 
      <!--Intro -->
-     <jsp:include page="view/layout/header/intro.jsp"/>
+     <jsp:include page="view/layout/header/login.jsp"/>
     
     <!--Intro -->
 
