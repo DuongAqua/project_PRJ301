@@ -5,12 +5,17 @@
  */
 package controller;
 
+import dal.CourseDB;
+import dal.TeacherDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Course;
+import model.Teacher;
 
 /**
  *
@@ -53,7 +58,17 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        TeacherDB teacherDB = new TeacherDB();
+        CourseDB courseDB = new CourseDB();
+        
+        ArrayList<Teacher> teachers = teacherDB.getTeachers();
+         ArrayList<Course> courses = courseDB.getCourses();
+        
+        request.setAttribute("courses", courses);
+        request.setAttribute("teachers", teachers);
+        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     /**

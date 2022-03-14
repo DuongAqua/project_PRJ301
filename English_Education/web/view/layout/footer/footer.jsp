@@ -10,9 +10,8 @@
           <div class="col-md-3 ml-auto">
             <h3>Links</h3>
             <ul class="list-unstyled footer-links">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Courses</a></li>
-              <li><a href="#">Programs</a></li>
+              <li><a href="home">Home</a></li>
+              <li><a href="coure">Courses</a></li>
               <li><a href="#">Teachers</a></li>
             </ul>
           </div>
