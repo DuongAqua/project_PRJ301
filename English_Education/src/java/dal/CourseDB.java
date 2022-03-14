@@ -5,6 +5,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
@@ -21,7 +22,7 @@ public class CourseDB extends DBContext {
 
     public static void main(String[] args) {
         CourseDB courseDB = new CourseDB();
-        System.out.println("" + courseDB.getCourses().get(0).getTeacher().getImg());
+        System.out.println("" + courseDB.getCourse("3").getImg());
     }
 
     public ArrayList<Course> getCourses() {
@@ -67,7 +68,7 @@ public class CourseDB extends DBContext {
                 t.setInstruction(rs.getString("teacherinstruction"));
                 t.setAchievement("teacherachievement");
                 c.setTeacher(t);
-                
+
                 courses.add(c);
             }
 
@@ -78,7 +79,7 @@ public class CourseDB extends DBContext {
     }
 
     public Course getCourse(String id) {
-       
+
         try {
 
             String sql = " select c.*, s.[start], s.[end],\n"
@@ -122,15 +123,83 @@ public class CourseDB extends DBContext {
                 t.setInstruction(rs.getString("teacherinstruction"));
                 t.setAchievement("teacherachievement");
                 c.setTeacher(t);
-                
+
                 return c;
-                
+
             }
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    public void createCourse(String name, String instruction, String description, String schedule, String lesson, String week, String price, String teacherId, String img) {
+
+        try {
+
+            String sql = "insert into Course\n"
+                    + "([name],\n" //1
+                    + "[instruction],\n"
+                    + "[description],\n" //3
+                    + "[schedule],\n"
+                    + "[lesson],\n" //5
+                    + "[week],\n"
+                    + "[price],\n" //7
+                    + "[img],\n"
+                    + "[teacherId]\n" //9
+                    + ")\n"
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, name);                                 //1
+            stm.setString(2, instruction);
+            stm.setString(3, description);                          //3
+            stm.setInt(4, Integer.parseInt(schedule));
+            stm.setInt(5, Integer.parseInt(lesson));                      //5
+            stm.setInt(6, Integer.parseInt(week));
+            stm.setDouble(7, Double.parseDouble(price));
+            stm.setString(8, img);
+            stm.setInt(9, Integer.parseInt(teacherId));
+
+            stm.executeQuery();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void updateCourse(String id, String name, String instruction, String description, String schedule, String lesson, String week, String price, String teacherId, String img) {
+
+        try {
+
+            String sql = "UPDATE [Course]\n" 
+                    + "SET [name] = ?,\n"           //1
+                    + "[instruction] = ?,\n"
+                    + "[description] = ?,\n"        //3
+                    + "[schedule] = ?,\n"
+                    + "[lesson] = ?,\n"             //5
+                    + "[week] = ?,\n"
+                    + "[price] = ?,\n"              //7
+                    + "[img] = ?,\n"                
+                    + "[teacherId] = ?\n"           //9
+                    + "WHERE id = ?;";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, name);                                 //1
+            stm.setString(2, instruction);
+            stm.setString(3, description);                          //3
+            stm.setInt(4, Integer.parseInt(schedule));
+            stm.setInt(5, Integer.parseInt(lesson));                      //5
+            stm.setInt(6, Integer.parseInt(week));
+            stm.setDouble(7, Double.parseDouble(price));
+            stm.setString(8, img);
+            stm.setInt(9, Integer.parseInt(teacherId));
+            stm.setInt(10, Integer.parseInt(id));
+
+            stm.executeQuery();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

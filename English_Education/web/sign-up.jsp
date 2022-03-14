@@ -82,15 +82,15 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Password" name="password" id="password" onkeyup='check();'>
+                                                <input type="password" class="form-control" placeholder="Password" name="password" required id="password" onkeyup='check();'>
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Re-Password" id="Re-Password" onkeyup='check();' ><span id='message'></span>
+                                                <input type="password" class="form-control" placeholder="Re-Password" id="Re-Password" required onkeyup='check();' ><span id='message'></span>
                                             </div>
 
                                             <div class="form-group mb-4">
-                                                <input type="date" class="form-control" placeholder="Date of Birth" name="dob">
+                                                <input type="date" class="form-control" placeholder="Date of Birth" required name="dob">
                                             </div>
                                             
                                             <div class="form-group mb-4">               
@@ -98,11 +98,11 @@
                                             </div>
                                             
                                             <div class="form-group mb-4">
-                                                <input type="text" class="form-control" placeholder="phone" name="phone">
+                                                <input type="text" class="form-control" placeholder="phone" name="phone" required>
                                             </div>
 
                                             <div class="form-group mb-4">
-                                                <input type="text" class="form-control" placeholder="image" name="img">
+                                                <input type="text" class="form-control" placeholder="image" name="img" required>
                                             </div>
 
                                             <div class="form-group">

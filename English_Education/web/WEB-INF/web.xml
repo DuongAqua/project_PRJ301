@@ -21,8 +21,16 @@
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListCourseServlet</servlet-name>
-        <servlet-class>controller.manager.ListCourseServlet</servlet-class>
+        <servlet-name>CreateCourseServlet</servlet-name>
+        <servlet-class>controller.manager.CreateCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseCreateServlet</servlet-name>
+        <servlet-class>controller.manager.CourseCreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseUpdateServlet</servlet-name>
+        <servlet-class>controller.manager.CourseUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
@@ -45,8 +53,16 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListCourseServlet</servlet-name>
-        <url-pattern>/manage/course</url-pattern>
+        <servlet-name>CreateCourseServlet</servlet-name>
+        <url-pattern>/manage/course/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseCreateServlet</servlet-name>
+        <url-pattern>/manager/course/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseUpdateServlet</servlet-name>
+        <url-pattern>/manager/course/update</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

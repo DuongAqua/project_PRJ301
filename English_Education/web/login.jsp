@@ -57,10 +57,10 @@
                             <form action="login" method="post" class="form-box">
                                 <h3 class="h4 text-black mb-4">Login</h3>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="username" name = "username">
+                                    <input type="text" class="form-control" placeholder="username" name = "username" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="password" name = "password">
+                                    <input type="password" class="form-control" placeholder="password" name = "password" required>
                                 </div>
                                 
                                 <div class="form-group">

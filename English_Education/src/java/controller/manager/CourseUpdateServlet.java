@@ -5,18 +5,25 @@
  */
 package controller.manager;
 
+import dal.CourseDB;
+import dal.TeacherDB;
+import dal.scheduleDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Course;
+import model.Schedule;
+import model.Teacher;
 
 /**
  *
  * @author Admin
  */
-public class ListCourseServlet extends HttpServlet {
+public class CourseUpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +42,10 @@ public class ListCourseServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ListCourseServlet</title>");            
+            out.println("<title>Servlet CourseUpdateServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ListCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CourseUpdateServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +63,29 @@ public class ListCourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+
+        CourseDB courseDB = new CourseDB();
+        TeacherDB teacherDB = new TeacherDB();
+        scheduleDB scheduleDB = new scheduleDB();
+
+        ArrayList<Schedule> schedules = scheduleDB.getSchedules();
+        ArrayList<Teacher> teachers = teacherDB.getTeachers();
+
+        Course course = courseDB.getCourse(request.getParameter("id"));
+
+        if (course == null) {
+            response.sendRedirect("../../home");
+        } else {
+            request.setAttribute("URI", request.getRequestURI());
+            request.setAttribute("contextPath", request.getContextPath());
+            request.setAttribute("teachers", teachers);
+            request.setAttribute("schedules", schedules);
+            request.setAttribute("course", course);
+            request.getRequestDispatcher("../../course-create.jsp").forward(request, response);
+        }
+//        processRequest(request, response);
+
     }
 
     /**
@@ -70,7 +99,28 @@ public class ListCourseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        CourseDB courseDB = new CourseDB();
+        
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String instruction = request.getParameter("instruction");
+        String description = request.getParameter("description");
+        String schedule = request.getParameter("schedule");
+        String lesson = request.getParameter("lesson");
+        String week = request.getParameter("week");
+        String price = request.getParameter("price");
+        String teacherId = request.getParameter("teacher");
+        String img = request.getParameter("img");
+        PrintWriter out = response.getWriter();
+        
+        
+        courseDB.updateCourse(id, name, instruction, description, schedule, lesson, week, price, teacherId, img);
+        out.println(" "+id + " " + name + " " + instruction + " " + description + " " + schedule + " " + lesson + " " + week + " " + price + " " + teacherId + " " + img);
+
+        
+        
+         
     }
 
     /**
