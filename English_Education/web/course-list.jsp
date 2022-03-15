@@ -90,6 +90,7 @@
                                                 <div class="py-3 px-4 w-25 ml-auto border-left"><a href="${requestScope.contextPath}/manager/course/delete?id=${c.id}" onclick="return confirm('Do you want to delete this Course');" style="text-height: max-size" class="icon-delete"></a> </div>
                                                 <div class="py-3 px-4 w-25 ml-auto border-left"><a href="${requestScope.contextPath}/manager/course/update?id=${c.id}"  style="text-height: max-size" class="icon-input"></a> </div>
                                                 </c:if>
+                                    
                                                 
                                             </div>
                                         </div>
