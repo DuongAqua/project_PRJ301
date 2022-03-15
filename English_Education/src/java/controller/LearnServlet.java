@@ -6,19 +6,21 @@
 package controller;
 
 import dal.CourseDB;
+import dal.LearnDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 import model.Course;
 
 /**
  *
  * @author Admin
  */
-public class CourseDetailServlet extends HttpServlet {
+public class LearnServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +34,17 @@ public class CourseDetailServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
         try (PrintWriter out = response.getWriter()) {
-            
-            request.getRequestDispatcher("course-single.jsp").forward(request, response);
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CourseDetailServlet</title>");            
+            out.println("<title>Servlet LearnServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CourseDetailServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LearnServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,18 +63,42 @@ public class CourseDetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         CourseDB courseDB = new CourseDB();
-        String id = request.getParameter("id");
-        Course course = courseDB.getCourse(id);
-        if (course != null) {
-            
-            request.setAttribute("course", course);
-            request.getRequestDispatcher("course-single.jsp").forward(request, response);
-        } else {
+        LearnDB learnDB = new LearnDB();
+
+        String courseId = request.getParameter("courseId");
+
+        Account user = (Account) request.getSession().getAttribute("user");
+
+        // 
+        if (courseId == null) {
             response.sendRedirect("home");
+
+        } else {
+            Course course = courseDB.getCourse(courseId);
+
+            if (course == null) {
+                response.sendRedirect("home");
+
+            } else {
+                //check user
+
+                if (user == null) {
+                    response.sendRedirect("login");
+                } else {
+                    learnDB.createLearn(user, course);
+                    System.out.println(user.getDob());
+                    System.out.println(course.getId());
+//                out.println("<script> aler('Enrol course success');</script>");
+                    response.sendRedirect("home");
+                }
+
+            }
+
         }
-        
+
     }
 
     /**

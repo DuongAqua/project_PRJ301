@@ -186,6 +186,6 @@
         </div> <!-- .site-wrap -->
 
         <jsp:include page="view/style/js.jsp"/>
-
+        
     </body>
 </html>

@@ -91,19 +91,21 @@
                                     <p> 
                                         <strong class="text-black mr-3">Instruction: </strong> <input type="text" class="form-control" name="instruction" required  value="${requestScope.course.instruction}"  placeholder="instruction"/>
                                     </p>
+                                    
+                                    <p>
+                                        <strong class="text-black mr-3">Image link:</strong> <input type="text" name="img" class="form-control" required  value="${requestScope.course.img}" placeholder="Image" />
+                                    </p>
                                     <div class="row mb-4">
                                         <div class="col-md-6">
-                                             <strong class="text-black mr-3">Image link:</strong> <input type="text" name="img" class="form-control" required  value="${requestScope.course.img}" placeholder="Image" />
                                             <img src="${requestScope.contextPath}/${requestScope.course.img}" alt="" class="img-fluid rounded">
                                             <img src="${requestScope.course.img}" alt="" class="img-fluid rounded">
                                         </div>
-
                                     </div>
 
                                     <p class="mt-4"><input type="submit" class="btn btn-primary" 
-                                                           value= "<c:if test="<%= (""+request.getAttribute("URI")).contains("create") %>">create</c:if>  
-                                                           <c:if test="<%= (""+request.getAttribute("URI")).contains("update") %>">update</c:if>
-                                                           "/></p>
+                                                           value= <c:if test="<%= (""+request.getAttribute("URI")).contains("create") %>">"create"</c:if>  
+                                                           <c:if test="<%= (""+request.getAttribute("URI")).contains("update") %>">"update" onclick="return confirm('Do you want to Update this Course');"  </c:if>
+                                                           /></p>
                                 </div>
                                 <!-- Course Description -->
                             </div>

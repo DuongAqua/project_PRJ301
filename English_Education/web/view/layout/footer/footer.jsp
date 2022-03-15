@@ -10,9 +10,9 @@
           <div class="col-md-3 ml-auto">
             <h3>Links</h3>
             <ul class="list-unstyled footer-links">
-              <li><a href="home">Home</a></li>
-              <li><a href="coure">Courses</a></li>
-              <li><a href="#">Teachers</a></li>
+                <li><a href="${requestScope.contextPath}/home">Home</a></li>
+              <li><a href="${requestScope.contextPath}/school">School</a></li>
+<!--              <li><a href="#">Teachers</a></li>-->
             </ul>
           </div>
 

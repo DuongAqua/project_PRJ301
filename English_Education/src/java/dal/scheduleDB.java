@@ -23,7 +23,7 @@ public class scheduleDB extends DBContext{
         System.out.println("" + scheduleDB.getSchedules().get(0).getStart());
     }
     
- public ArrayList<Schedule> getSchedules() {
+    public ArrayList<Schedule> getSchedules() {
         ArrayList<Schedule> schedules = new ArrayList<>();
         try {
 
@@ -36,7 +36,7 @@ public class scheduleDB extends DBContext{
                 s.setId(rs.getInt("id"));
                 s.setStart(Time.valueOf(rs.getString("start")));
                 s.setEnd(Time.valueOf(rs.getString("end")));
-                
+
                 schedules.add(s);
             }
 

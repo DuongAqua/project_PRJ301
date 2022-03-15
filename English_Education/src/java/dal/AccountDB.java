@@ -90,6 +90,40 @@ public class AccountDB extends DBContext {
         }
         return null;
     }
+    
+    
+    public Account getAccount(String id) {
+
+        try {
+
+            String sql = "select * from Account a where a.id =? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, id);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Account a = new Account();
+                a.setId(rs.getInt("id"));
+                a.setUsername(rs.getString("username"));
+                a.setPassword(rs.getString("password"));
+                a.setType(rs.getInt("type"));
+                a.setCreate_at(rs.getString("create_at"));
+
+                a.setFirstname(rs.getString("firstname"));
+                a.setLastname(rs.getString("lastname"));
+                a.setGender(rs.getBoolean("gender"));
+                a.setDob((rs.getDate("dob")));
+                a.setPhone(rs.getString("phone"));
+                a.setImg(rs.getString("img"));
+
+                return a;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
     public void createAccount(String username, String password, String firstName, String lastName, String DOB, String gender, String phone, String img ) {
 

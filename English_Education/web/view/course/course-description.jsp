@@ -20,7 +20,7 @@
         <p>Ipsam fuga fugiat vero repudiandae, tenetur a ullam, expedita perspiciatis dolores rem quibusdam numquam dicta sint unde repellat magni recusandae. Id, quibusdam, voluptatum. Amet mollitia ratione, illum animi quia ex?</p>
         <p>Sint aut repudiandae, in amet nemo. Nobis labore id iure molestias reprehenderit quisquam illo quod cum dolorum aspernatur ut sequi, facere beatae, porro cupiditate magnam laborum laudantium laboriosam ab autem!</p>
 
-        <p class="mt-4"><a href="learn?couseId=${requestScope.course.id}" class="btn btn-primary">Admission</a></p>
+        <p class="mt-4"><a href="learn?courseId=${requestScope.course.id}" class="btn btn-primary">Admission</a></p>
     </div>
 
 </c:if>

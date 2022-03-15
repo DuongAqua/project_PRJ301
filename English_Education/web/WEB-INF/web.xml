@@ -32,6 +32,14 @@
         <servlet-name>CourseUpdateServlet</servlet-name>
         <servlet-class>controller.manager.CourseUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LearnServlet</servlet-name>
+        <servlet-class>controller.LearnServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SchoolServlet</servlet-name>
+        <servlet-class>controller.SchoolServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>CourseUpdateServlet</servlet-name>
         <url-pattern>/manager/course/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LearnServlet</servlet-name>
+        <url-pattern>/learn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SchoolServlet</servlet-name>
+        <url-pattern>/school</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

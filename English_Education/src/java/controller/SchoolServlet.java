@@ -6,19 +6,24 @@
 package controller;
 
 import dal.CourseDB;
+import dal.TeacherDB;
+import dal.scheduleDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Course;
+import model.Schedule;
+import model.Teacher;
 
 /**
  *
  * @author Admin
  */
-public class CourseDetailServlet extends HttpServlet {
+public class SchoolServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +38,14 @@ public class CourseDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            request.getRequestDispatcher("course-single.jsp").forward(request, response);
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CourseDetailServlet</title>");            
+            out.println("<title>Servlet SchoolServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CourseDetailServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SchoolServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,19 +63,62 @@ public class CourseDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        TeacherDB teacherDB = new TeacherDB();
+        scheduleDB scheduleDB = new scheduleDB();
+        CourseDB courseDB = new CourseDB();
+
+        ArrayList<Schedule> schedules = scheduleDB.getSchedules();
+        ArrayList<Teacher> teachers = teacherDB.getTeachers();
 //        processRequest(request, response);
 
-        CourseDB courseDB = new CourseDB();
-        String id = request.getParameter("id");
-        Course course = courseDB.getCourse(id);
-        if (course != null) {
-            
-            request.setAttribute("course", course);
-            request.getRequestDispatcher("course-single.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("home");
+        request.setAttribute("URI", request.getRequestURI());
+        request.setAttribute("contextPath", request.getContextPath());
+        request.setAttribute("teachers", teachers);
+        request.setAttribute("schedules", schedules);
+        
+        String search = request.getParameter("search");
+        if (search == null || search.length() ==0 ) {
+            search = "";
+        }
+        String teacher = request.getParameter("teacher");
+        if ( teacher == null) {
+            teacher = "0";
         }
         
+        
+        int totalrow = courseDB.getRowCount(teacher, search);
+        int pagesize = 6;
+  
+        String page = request.getParameter("page");
+        if (page == null || page.length() == 0 ) {
+            page ="1";
+        }
+        
+        int pageindex = Integer.parseInt(page); 
+        
+        
+        int totalpage = (totalrow%pagesize == 0)? (totalrow/pagesize) : (totalrow/pagesize + 1);
+
+        if(pageindex <1) {
+            response.sendRedirect(request.getContextPath()+"/school?page=1&search="+search+"&teacher="+teacher);
+        } else if(pageindex > totalpage){
+            
+            response.sendRedirect(request.getContextPath()+"/school?page="+totalpage+"&search="+search+"&teacher="+teacher);;
+        }
+        else{
+         ArrayList<Course> courses = courseDB.getPaggingSearchCourses(pagesize, pageindex, teacher, search);
+         
+        request.setAttribute("pageindex", pageindex);
+            request.setAttribute("totalpage", totalpage);
+        request.setAttribute("courses", courses);
+        request.setAttribute("teacher", teacher);
+
+        request.getRequestDispatcher("course-list.jsp").forward(request, response);
+        }
+//        processRequest(request, response);
     }
 
     /**
