@@ -5,15 +5,15 @@
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <div class="site-logo mr-auto w-25"><a href="${requestScope.contextPath}/home">OneSchool</a></div>
+            <div class="site-logo mr-auto w-25"><a href="${pageContext.request.contextPath}/home">OneSchool</a></div>
 
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                  <li><a href="${requestScope.contextPath}/home" class="nav-link">Home</a></li>
-                <li><a href="course" class="nav-link">Courses</a></li>
-                <li><a href="#teachers-section" class="nav-link">Teachers</a></li>
-                <c:if test="${sessionScope.user.type == 1}">
+                  <li><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/school" class="nav-link">School</a></li>
+                <c:if test="${sessionScope.user.type == 0}">
+                <li><a href="${pageContext.request.contextPath}/info" class="nav-link">Your Info</a></li>
                 </c:if>
                 
               </ul>
@@ -24,10 +24,10 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
                 <c:if test="${sessionScope.user == null}">
-                      <li class="cta"><a href="${requestScope.contextPath}/login" class="nav-link"><span>Login</span></a></li>
+                      <li class="cta"><a href="${pageContext.request.contextPath}/login" class="nav-link"><span>Login</span></a></li>
                 </c:if>
                 <c:if test="${sessionScope.user != null}">
-                      <li class="cta"><a href="${requestScope.contextPath}/logout" class="nav-link"><span>Log Out</span></a></li>
+                      <li class="cta"><a href="${pageContext.request.contextPath}/logout" class="nav-link"><span>Log Out</span></a></li>
                 </c:if>
                 
               </ul>

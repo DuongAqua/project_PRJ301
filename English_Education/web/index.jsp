@@ -63,7 +63,7 @@
 
     
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_1.jpg');">
+    <div class="site-section bg-image overlay" style="background-image: url('${pageContext.request.contextPath}/images/hero_1.jpg');">
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-8 text-center testimony">

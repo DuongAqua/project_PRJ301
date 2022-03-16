@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.manager;
+package controller;
 
+import dal.AccountDB;
 import dal.CourseDB;
+import dal.LearnDB;
 import dal.TeacherDB;
-import dal.scheduleDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,15 +16,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 import model.Course;
-import model.Schedule;
+import model.Learn;
 import model.Teacher;
 
 /**
  *
  * @author Admin
  */
-public class CourseUpdateServlet extends HttpServlet {
+public class InfoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +44,10 @@ public class CourseUpdateServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CourseUpdateServlet</title>");
+            out.println("<title>Servlet InfoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CourseUpdateServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet InfoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,29 +65,30 @@ public class CourseUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
 
-        CourseDB courseDB = new CourseDB();
+//        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
         TeacherDB teacherDB = new TeacherDB();
-        scheduleDB scheduleDB = new scheduleDB();
-
-        ArrayList<Schedule> schedules = scheduleDB.getSchedules();
+        CourseDB courseDB = new CourseDB();
+        LearnDB learnDB = new LearnDB();
+        
+        Account user = (Account) request.getSession().getAttribute("user");
+        
         ArrayList<Teacher> teachers = teacherDB.getTeachers();
+        if(user !=null){
+            ArrayList<Learn> learns = learnDB.getStudentLearns(user.getId() + "");
 
-        Course course = courseDB.getCourse(request.getParameter("id"));
-
-        if (course == null) {
-            response.sendRedirect("../../home");
-        } else {
-            request.setAttribute("URI", request.getRequestURI());
-            request.setAttribute("contextPath", request.getContextPath());
+            request.setAttribute("learns", learns);
             request.setAttribute("teachers", teachers);
-            request.setAttribute("schedules", schedules);
-            request.setAttribute("course", course);
-            request.getRequestDispatcher("../../course-create.jsp").forward(request, response);
-        }
-//        processRequest(request, response);
 
+            request.getRequestDispatcher("info.jsp").forward(request, response);
+        }else{
+            response.sendRedirect(request.getContextPath() +"/home");
+        
+        }
+         
     }
 
     /**
@@ -100,27 +103,22 @@ public class CourseUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        CourseDB courseDB = new CourseDB();
+        request.setCharacterEncoding("utf-8");
+        AccountDB accDB = new AccountDB();
         
         String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String instruction = request.getParameter("instruction");
-        String description = request.getParameter("description");
-        String schedule = request.getParameter("schedule");
-        String lesson = request.getParameter("lesson");
-        String week = request.getParameter("week");
-        String price = request.getParameter("price");
-        String teacherId = request.getParameter("teacher");
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");;
+        String DOB = request.getParameter("dob");
+        String gender = request.getParameter("gender");
+        String phone = request.getParameter("phone");
         String img = request.getParameter("img");
-        PrintWriter out = response.getWriter();
+        
+        accDB.updateAccount(id, firstName, lastName, DOB, gender, phone, img);
         
         
-        courseDB.updateCourse(id, name, instruction, description, schedule, lesson, week, price, teacherId, img);
-        out.println(" "+id + " " + name + " " + instruction + " " + description + " " + schedule + " " + lesson + " " + week + " " + price + " " + teacherId + " " + img );
+        doGet(request, response);
 
-        response.sendRedirect(request.getRequestURI()+"?id="+id);
-        
-         
     }
 
     /**

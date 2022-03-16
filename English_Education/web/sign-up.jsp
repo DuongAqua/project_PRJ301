@@ -59,7 +59,7 @@
                                     <div class="col-lg-6 mb-4">
                                         <h1  data-aos="fade-up" data-aos-delay="100">Learn From The Expert</h1>
                                         <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-                                        <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">Admission Now</a></p>
+                                        <p data-aos="fade-up" data-aos-delay="300"></p>
 
                                     </div>
 
@@ -67,7 +67,7 @@
 
 
                                     <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                                        <form action="" method="post" class="form-box" onsubmit="return check();">
+                                        <form action="sign-up" method="post" class="form-box" onsubmit="return check();">
                                             <h3 class="h4 text-black mb-4">Sign Up</h3>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" placeholder="first name" name="firstname" required> 

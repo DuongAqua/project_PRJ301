@@ -107,7 +107,7 @@ public class CourseCreateServlet extends HttpServlet {
         
         courseDB.createCourse(name, instruction, description, schedule, lesson, week, price, teacherId, img);
         
-        response.sendRedirect(request.getContextPath()+  "/home");
+        response.sendRedirect(request.getContextPath()+  "/school");
     }
 
     /**

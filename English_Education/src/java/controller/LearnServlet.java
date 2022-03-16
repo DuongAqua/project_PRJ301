@@ -88,11 +88,17 @@ public class LearnServlet extends HttpServlet {
                 if (user == null) {
                     response.sendRedirect("login");
                 } else {
-                    learnDB.createLearn(user, course);
-                    System.out.println(user.getDob());
-                    System.out.println(course.getId());
+                    if(user.getType() == 1){
+                        response.sendRedirect("home");
+                        
+                    }else{
+                        learnDB.createLearn(user, course);
+                        System.out.println(user.getDob());
+                        System.out.println(course.getId());
 //                out.println("<script> aler('Enrol course success');</script>");
-                    response.sendRedirect("home");
+                        response.sendRedirect("home");
+                    }
+                    
                 }
 
             }

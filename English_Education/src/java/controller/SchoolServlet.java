@@ -116,7 +116,7 @@ public class SchoolServlet extends HttpServlet {
         request.setAttribute("courses", courses);
         request.setAttribute("teacher", teacher);
 
-        request.getRequestDispatcher("course-list.jsp").forward(request, response);
+        request.getRequestDispatcher("school.jsp").forward(request, response);
         }
 //        processRequest(request, response);
     }

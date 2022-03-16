@@ -21,8 +21,8 @@ public class AccountDB extends DBContext {
         AccountDB accDB = new AccountDB();
         System.out.println("" + accDB.getAccounts().get(0).getUsername());
         System.out.println("" + accDB.getAccount("admin", "admin").getLastname());
-        
-        System.out.println(""+ Boolean.parseBoolean("true"));
+
+        System.out.println("" + Boolean.parseBoolean("true"));
     }
 
     public ArrayList<Account> getAccounts() {
@@ -90,8 +90,7 @@ public class AccountDB extends DBContext {
         }
         return null;
     }
-    
-    
+
     public Account getAccount(String id) {
 
         try {
@@ -125,22 +124,22 @@ public class AccountDB extends DBContext {
         return null;
     }
 
-    public void createAccount(String username, String password, String firstName, String lastName, String DOB, String gender, String phone, String img ) {
+    public void createAccount(String username, String password, String firstName, String lastName, String DOB, String gender, String phone, String img) {
 
         try {
 
             String sql = "insert into Account\n"
-                + "([Username],\n"  //1
-                + "[Password],\n"
-                + "[firstName],\n"  //3
-                + "[lastName],\n"
-                + "[DOB],\n"        //5
-                + "[gender],\n"
-                + "[phone],\n"      //7
-                + "[img]\n"         //8
-                + "\n"
-                + ")\n"
-                + "values(?, ?, ?, ?, ?, ?, ?, ?);";
+                    + "([Username],\n" //1
+                    + "[Password],\n"
+                    + "[firstName],\n" //3
+                    + "[lastName],\n"
+                    + "[DOB],\n" //5
+                    + "[gender],\n"
+                    + "[phone],\n" //7
+                    + "[img]\n" //8
+                    + "\n"
+                    + ")\n"
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
@@ -149,13 +148,42 @@ public class AccountDB extends DBContext {
             stm.setDate(5, Date.valueOf(DOB));
             stm.setBoolean(6, Boolean.valueOf(gender));
             stm.setString(7, phone);
-            stm.setString(8,  img);
+            stm.setString(8, img);
             ResultSet rs = stm.executeQuery();
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void updateAccount(String id, String firstName, String lastName, String DOB, String gender, String phone, String img) {
+
+        try {
+
+            String sql = "UPDATE [Account]\n"
+                    + "SET [firstName] = ?,\n"
+                    + "[lastName] = ?,\n"
+                    + "[DOB] = ?,\n"
+                    + "[gender] = ?,\n"
+                    + "[phone] = ?,\n"
+                    + "[img] = ?\n"
+                    + "WHERE id = ?;";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, firstName);
+            stm.setString(2, lastName);
+            stm.setDate(3, Date.valueOf(DOB));
+            stm.setBoolean(4, Boolean.parseBoolean(gender));           
+            stm.setString(5, phone);
+            stm.setString(6, img);
             
+            
+            stm.setString(7, id);
+            
+             stm.execute();
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
 }

@@ -110,7 +110,7 @@
 
                             <select name="teacher">
 
-                                <option disabled>teacher</option>
+                                <option value="0" selected>teacher</option>
                                 <c:forEach var="t" items="${requestScope.teachers}">
                                     <option value="${t.id}">${t.name}</option>
                                 </c:forEach>
