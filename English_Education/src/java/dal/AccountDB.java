@@ -149,7 +149,7 @@ public class AccountDB extends DBContext {
             stm.setBoolean(6, Boolean.valueOf(gender));
             stm.setString(7, phone);
             stm.setString(8, img);
-            ResultSet rs = stm.executeQuery();
+            stm.execute();
 
         } catch (Exception ex) {
             ex.printStackTrace();

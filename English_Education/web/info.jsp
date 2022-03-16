@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-lg-9 mb-3">
                         <form action="info" method="post" class="form-box" onsubmit="return confirm('Do you want to save?');">
-                                            <h3 class="h4 text-black mb-4">Infomation</h3>
+                                            <h3 class="h3 text-black mb-4">Infomation</h3>
                                             <div class="form-group">
                                                 <input type="hidden" name="id" value="${sessionScope.user.id}" />
                                                 <input type="text" class="form-control" placeholder="first name" name="firstname" required value="${sessionScope.user.firstname}"> 
@@ -79,7 +79,7 @@
                                             </div>
                                             
                                             <div class="form-group mb-4">               
-                                                <input type="radio"  name="gender" value="true"  checked/> Male  &nbsp;<input type="radio"  name="gender" value="false" <c:if test="${sessionScope.user.gender == true}">checked</c:if>/>${sessionScope.user.gender} 
+                                                <input type="radio"  name="gender" value="true"  checked/> Male  &nbsp;<input type="radio"  name="gender" value="false" <c:if test="${sessionScope.user.gender == false}">checked</c:if>/> Female
                                             </div>
                                             
                                             <div class="form-group mb-4">
@@ -87,8 +87,9 @@
                                             </div>
                                                 
                                             <div class="form-group mb-4">
-                                                <input type="text" class="form-control" placeholder="image" name="img" required  value="${sessionScope.user.img}">
+                                                <input type="text" class="form-control" placeholder="image" name="img" required  value="${sessionScope.user.img}"> <img src="${sessionScope.user.img}" height="150px"/>
                                             </div>
+                                            
 
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-primary btn-pill" value="Update" >  
@@ -134,6 +135,18 @@
                     </div>
                     <div class="col-lg-3 pl-lg-3"> 
                         <h1>Total Money</h1>
+                        <div class="meta course-inner-text py-1 px-2">
+                            <c:forEach var="l" items="${requestScope.learns}">
+                            <p class="meta"> ${l.course.name} </p>
+                            <p class="meta"> ${l.registerDate} </p>
+                            <p class="meta"> ${l.course.price} </p>
+                            <br/>
+                        </c:forEach>
+                            
+                        </div>
+                        
+                            
+                        <h3>Total: ${requestScope.total} </h3>    
                     </div>
 
 

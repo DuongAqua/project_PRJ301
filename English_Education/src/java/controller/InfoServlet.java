@@ -65,30 +65,37 @@ public class InfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
 
 //        processRequest(request, response);
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         TeacherDB teacherDB = new TeacherDB();
         CourseDB courseDB = new CourseDB();
         LearnDB learnDB = new LearnDB();
-        
+
         Account user = (Account) request.getSession().getAttribute("user");
-        
+
         ArrayList<Teacher> teachers = teacherDB.getTeachers();
-        if(user !=null){
+        if (user != null) {
             ArrayList<Learn> learns = learnDB.getStudentLearns(user.getId() + "");
+
+            double total = 0;
+            for (Learn l : learns) {
+                total = total + l.getCourse().getPrice();
+            }
 
             request.setAttribute("learns", learns);
             request.setAttribute("teachers", teachers);
+            request.setAttribute("total", total);
 
             request.getRequestDispatcher("info.jsp").forward(request, response);
-        }else{
-            response.sendRedirect(request.getContextPath() +"/home");
-        
+        } else {
+            response.sendRedirect(request.getContextPath() + "/home");
+
         }
-         
+
     }
 
     /**
@@ -103,9 +110,12 @@ public class InfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+
         request.setCharacterEncoding("utf-8");
         AccountDB accDB = new AccountDB();
-        
+
+        PrintWriter out = response.getWriter();
         String id = request.getParameter("id");
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");;
@@ -113,11 +123,14 @@ public class InfoServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
         String img = request.getParameter("img");
-        
+
+//        out.println(""+ gender);
         accDB.updateAccount(id, firstName, lastName, DOB, gender, phone, img);
         
-        
+        request.getSession().setAttribute("user", accDB.getAccount(id));
+
         doGet(request, response);
+//        response.sendRedirect(request.getContextPath()+"/info");
 
     }
 
