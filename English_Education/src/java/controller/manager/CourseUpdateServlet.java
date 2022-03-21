@@ -64,7 +64,8 @@ public class CourseUpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         CourseDB courseDB = new CourseDB();
         TeacherDB teacherDB = new TeacherDB();
         scheduleDB scheduleDB = new scheduleDB();
@@ -100,8 +101,10 @@ public class CourseUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         CourseDB courseDB = new CourseDB();
-        
+
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String instruction = request.getParameter("instruction");
@@ -113,14 +116,12 @@ public class CourseUpdateServlet extends HttpServlet {
         String teacherId = request.getParameter("teacher");
         String img = request.getParameter("img");
         PrintWriter out = response.getWriter();
-        
-        
-        courseDB.updateCourse(id, name, instruction, description, schedule, lesson, week, price, teacherId, img);
-        out.println(" "+id + " " + name + " " + instruction + " " + description + " " + schedule + " " + lesson + " " + week + " " + price + " " + teacherId + " " + img );
 
-        response.sendRedirect(request.getRequestURI()+"?id="+id);
-        
-         
+        courseDB.updateCourse(id, name, instruction, description, schedule, lesson, week, price, teacherId, img);
+        out.println(" " + id + " " + name + " " + instruction + " " + description + " " + schedule + " " + lesson + " " + week + " " + price + " " + teacherId + " " + img);
+
+        response.sendRedirect(request.getRequestURI() + "?id=" + id);
+
     }
 
     /**

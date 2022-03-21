@@ -52,6 +52,10 @@
         <servlet-name>InfoServlet</servlet-name>
         <servlet-class>controller.InfoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CourseDeleteServlet</servlet-name>
+        <servlet-class>controller.manager.CourseDeleteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>InfoServlet</servlet-name>
         <url-pattern>/info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseDeleteServlet</servlet-name>
+        <url-pattern>/manager/course/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

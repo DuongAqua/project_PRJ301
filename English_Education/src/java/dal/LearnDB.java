@@ -18,25 +18,24 @@ import model.Schedule;
  *
  * @author Admin
  */
-public class LearnDB extends DBContext{
-    private CourseDB courseDB =new CourseDB();
-    private  AccountDB accDB = new AccountDB();
-    
-    
+public class LearnDB extends DBContext {
+
+    private CourseDB courseDB = new CourseDB();
+    private AccountDB accDB = new AccountDB();
+
     public static void main(String[] args) {
         LearnDB learnDB = new LearnDB();
-        
+
         Account a = new Account();
         a.setId(2);
-        
+
         Course c = new Course();
         c.setId(3);
+
         
-        learnDB.createLearn(a, c);
-        System.out.println("" );
+        System.out.println("" + learnDB.getStudentCourses("2").get(0).getCourse().getName());
     }
-    
-    
+
     public ArrayList<Learn> getLearns() {
         ArrayList<Learn> learns = new ArrayList<>();
         try {
@@ -44,18 +43,18 @@ public class LearnDB extends DBContext{
             String sql = "select * from Learn l";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-
+            
             while (rs.next()) {
                 Learn l = new Learn();
                 l.setId(rs.getInt("id"));
                 l.setRegisterDate(rs.getTimestamp("registerDate"));
-                
-                Course c =courseDB.getCourse(rs.getString("courseId"));
+
+                Course c = courseDB.getCourse(rs.getString("courseId"));
                 l.setCourse(c);
-                
+
                 Account a = accDB.getAccount(rs.getString("studentId"));
                 l.setStudent(a);
-                
+
                 learns.add(l);
             }
 
@@ -64,7 +63,7 @@ public class LearnDB extends DBContext{
         }
         return learns;
     }
-    
+
     public ArrayList<Learn> getStudentLearns(String studentId) {
         ArrayList<Learn> learns = new ArrayList<>();
         try {
@@ -78,13 +77,13 @@ public class LearnDB extends DBContext{
                 Learn l = new Learn();
                 l.setId(rs.getInt("id"));
                 l.setRegisterDate(rs.getTimestamp("registerDate"));
-                
-                Course c =courseDB.getCourse(rs.getString("courseId"));
+
+                Course c = courseDB.getCourse(rs.getString("courseId"));
                 l.setCourse(c);
-                
+
                 Account a = accDB.getAccount(rs.getString("studentId"));
                 l.setStudent(a);
-                
+
                 learns.add(l);
             }
 
@@ -93,9 +92,38 @@ public class LearnDB extends DBContext{
         }
         return learns;
     }
-    
-    public void createLearn(Account student , Course course) {
-        
+
+    public ArrayList<Learn> getStudentCourses(String studentId) {
+        ArrayList<Learn> learns = new ArrayList<>();
+        try {
+
+            String sql = "select distinct  l.courseId , l.studentId from Learn l where l.studentId = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, Integer.parseInt(studentId));
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Learn l = new Learn();
+//                l.setId(rs.getInt("id"));
+//                l.setRegisterDate(rs.getTimestamp("registerDate"));
+                
+                Course c = courseDB.getCourse(rs.getString("courseId"));
+                l.setCourse(c);
+
+                Account a = accDB.getAccount(rs.getString("studentId"));
+                l.setStudent(a);
+
+                learns.add(l);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return learns;
+    }
+
+    public void createLearn(Account student, Course course) {
+
         try {
 
             String sql = "insert into Learn ([courseId], [studentId]) values(?, ?);";
@@ -106,8 +134,7 @@ public class LearnDB extends DBContext{
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        
+
     }
-    
-    
+
 }

@@ -133,19 +133,20 @@
 
                         <!-- Course Description -->
                     </div>
+                                            <% int i=1;%>
                     <div class="col-lg-3 pl-lg-3"> 
                         <h1>Total Money</h1>
                         <div class="meta course-inner-text py-1 px-2">
                             <c:forEach var="l" items="${requestScope.learns}">
-                            <p class="meta"> ${l.course.name} </p>
-                            <p class="meta"> ${l.registerDate} </p>
-                            <p class="meta"> ${l.course.price} </p>
+                                <p class="meta"><strong><%=i%>) </strong> ${l.course.name} </p>
+                            <p class="meta"><h3></h3> ${l.registerDate} </p>
+                            <p class="meta"><h3> </h3> ${l.course.price} </p>
                             <br/>
+                            <% i++;%>
                         </c:forEach>
                             
                         </div>
-                        
-                            
+                                                   
                         <h3>Total: ${requestScope.total} </h3>    
                     </div>
 
@@ -153,12 +154,12 @@
                 </div>
                 <br/>
                 <br/>
-                <h1>your Course</h1>
+                <h1>Your Course: ${requestScope.coursesize}</h1>
                 <div class="container">
                     <div class="row">
                         <!-- list -->
                         <div class="owl-carousel col-12 nonloop-block-14">
-                            <c:forEach var="l" items="${requestScope.learns}">
+                            <c:forEach var="l" items="${requestScope.cour}">
                                 <!-- course -->
                                 <div class="course bg-white h-100 align-self-stretch">
                                     <figure class="m-0">

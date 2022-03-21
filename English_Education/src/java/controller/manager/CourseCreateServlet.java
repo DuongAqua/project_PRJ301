@@ -63,6 +63,10 @@ public class CourseCreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=UTF-8");
+         request.setCharacterEncoding("utf-8");
+        
         CourseDB courseDB = new CourseDB();
         TeacherDB teacherDB = new TeacherDB();
          scheduleDB scheduleDB = new scheduleDB();

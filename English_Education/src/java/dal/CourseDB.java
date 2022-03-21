@@ -202,6 +202,22 @@ public class CourseDB extends DBContext {
         }
     }
 
+    
+    public void deleteCourse(String id) {
+
+        try {
+
+            String sql = "delete [Course] where id = ?;";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1,  Integer.parseInt(id));                                 //1
+
+            stm.executeQuery();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public int getRowCount(String teacher, String search) {
         int count = 0;
         try {
