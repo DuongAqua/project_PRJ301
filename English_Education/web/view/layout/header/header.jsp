@@ -15,7 +15,9 @@
                 <c:if test="${sessionScope.user.type == 0}">
                 <li><a href="${pageContext.request.contextPath}/info" class="nav-link">Your Info</a></li>
                 </c:if>
-                
+                <c:if test="${sessionScope.user.type == 1}">
+                <li><a href="${pageContext.request.contextPath}/manager/course/list" class="nav-link">Course Manager</a></li>
+                </c:if>
               </ul>
             </nav>
           </div>

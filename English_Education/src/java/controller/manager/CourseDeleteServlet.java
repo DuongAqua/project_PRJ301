@@ -78,7 +78,7 @@ CourseDB courseDB = new CourseDB();
             
             courseDB.deleteCourse(request.getParameter("id"));
             
-            response.sendRedirect("../../"+"school");
+            response.sendRedirect(request.getContextPath()+  "/manager/course/list");
         }
         
         

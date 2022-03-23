@@ -37,7 +37,7 @@ public class SignUpServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SignUpServlet</title>");            
+            out.println("<title>Servlet SignUpServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SignUpServlet at " + request.getContextPath() + "</h1>");
@@ -59,6 +59,8 @@ public class SignUpServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
 
         request.getRequestDispatcher("sign-up.jsp").forward(request, response);
     }
@@ -76,7 +78,7 @@ public class SignUpServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         AccountDB accDB = new AccountDB();
-        
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstname");
@@ -85,13 +87,12 @@ public class SignUpServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
         String img = request.getParameter("img");
-        
+
         accDB.createAccount(username, password, firstName, lastName, DOB, gender, phone, img);
-        
-        
-        Account a =  accDB.getAccount(username, password);
+
+        Account a = accDB.getAccount(username, password);
         request.getSession().setAttribute("user", a);
-        
+
         response.sendRedirect("home");
     }
 

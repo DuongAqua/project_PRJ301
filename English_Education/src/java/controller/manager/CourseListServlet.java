@@ -23,7 +23,7 @@ import model.Teacher;
  *
  * @author Admin
  */
-public class CourseCreateServlet extends HttpServlet {
+public class CourseListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class CourseCreateServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CourseCreateServlet</title>");
+            out.println("<title>Servlet CourseListServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CourseCreateServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CourseListServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,15 +63,13 @@ public class CourseCreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        response.setContentType("text/html;charset=UTF-8");
-         request.setCharacterEncoding("utf-8");
-        
-        CourseDB courseDB = new CourseDB();
+                response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
         TeacherDB teacherDB = new TeacherDB();
-         scheduleDB scheduleDB = new scheduleDB();
-       
-        
+        scheduleDB scheduleDB = new scheduleDB();
+        CourseDB courseDB = new CourseDB();
+
         ArrayList<Schedule> schedules = scheduleDB.getSchedules();
         ArrayList<Teacher> teachers = teacherDB.getTeachers();
 //        processRequest(request, response);
@@ -80,7 +78,46 @@ public class CourseCreateServlet extends HttpServlet {
         request.setAttribute("contextPath", request.getContextPath());
         request.setAttribute("teachers", teachers);
         request.setAttribute("schedules", schedules);
-        request.getRequestDispatcher("../../view/course/manager/create-update.jsp").forward(request, response);
+        
+        String search = request.getParameter("search");
+        if (search == null || search.length() ==0 ) {
+            search = "";
+        }
+        String teacher = request.getParameter("teacher");
+        if ( teacher == null) {
+            teacher = "0";
+        }
+        
+        
+        int totalrow = courseDB.getRowCount(teacher, search);
+        int pagesize = 6;
+  
+        String page = request.getParameter("page");
+        if (page == null || page.length() == 0 ) {
+            page ="1";
+        }
+        
+        int pageindex = Integer.parseInt(page); 
+        
+        
+        int totalpage = (totalrow%pagesize == 0)? (totalrow/pagesize) : (totalrow/pagesize + 1);
+
+        if(pageindex <1) {
+            response.sendRedirect(request.getContextPath()+"/manager/course/list?page=1&search="+search+"&teacher="+teacher);
+        } else if(pageindex > totalpage){
+            
+            response.sendRedirect(request.getContextPath()+"/manager/course/list?page="+totalpage+"&search="+search+"&teacher="+teacher);;
+        }
+        else{
+         ArrayList<Course> courses = courseDB.getPaggingSearchCourses(pagesize, pageindex, teacher, search);
+         
+        request.setAttribute("pageindex", pageindex);
+            request.setAttribute("totalpage", totalpage);
+        request.setAttribute("courses", courses);
+        request.setAttribute("teacher", teacher);
+
+        request.getRequestDispatcher("../../view/course/manager/list.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -94,26 +131,7 @@ public class CourseCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-         request.setCharacterEncoding("utf-8");
-//        processRequest(request, response);
-        CourseDB courseDB = new CourseDB();
-        
-        String name = request.getParameter("name"); 
-        String instruction = request.getParameter("instruction");
-        String description = request.getParameter("description");
-        String schedule = request.getParameter("schedule");
-        String lesson = request.getParameter("lesson");
-        String week = request.getParameter("week");
-        String price = request.getParameter("price");
-        String teacherId = request.getParameter("teacher");
-        String img = request.getParameter("img");
-        PrintWriter out = response.getWriter();
-//        out.println(" " + name+ " " +  instruction+ " " + description+ " " + schedule+ " " + lesson + " " + week+ " " + price+ " " + teacherId+ " " + img );
-        
-        courseDB.createCourse(name, instruction, description, schedule, lesson, week, price, teacherId, img);
-        
-        response.sendRedirect(request.getContextPath()+  "/manager/course/list");
+        processRequest(request, response);
     }
 
     /**

@@ -23,6 +23,7 @@ public class CourseDB extends DBContext {
     public static void main(String[] args) {
         CourseDB courseDB = new CourseDB();
         System.out.println("" + courseDB.getCourse("3").getImg());
+        System.out.println("" + courseDB.getPaggingSearchCourses(5, 1, "2", "asdasda").size());
     }
 
     public ArrayList<Course> getCourses() {

@@ -12,7 +12,7 @@
                             <a href="course?id=${c.id}"><img src="${c.img}" alt="Image" class="img-fluid"></a>
                         </figure>
                         <div class="course-inner-text py-4 px-4">
-                            <span class="course-price">$${c.price}</span>
+                            <span class="course-price">${c.price}$</span>
                             <div class="meta"><span class="icon-clock-o"></span>${c.lesson} Lessons / ${c.week} week</div>
                             <h3><a href="course?id=${c.id}">${c.name}</a></h3>
                             <p style="height: 120px">${c.instruction} </p>

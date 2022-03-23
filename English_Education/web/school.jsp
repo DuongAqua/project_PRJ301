@@ -45,9 +45,7 @@
                             <div class="row justify-content-center align-items-center text-center">
                                 <div class="col-lg-6">
                                     <h1 data-aos="fade-up" data-aos-delay="0"> List Course</h1>
-                                    <c:if test="${sessionScope.user.type == 1}">
-                                        <p data-aos="fade-up" data-aos-delay="100"><a href="${requestScope.contextPath}/manager/course/create">Create</a></p>         
-                                    </c:if>
+                                    
                                 </div>
 
 
@@ -78,7 +76,7 @@
                                                 <a href="${requestScope.contextPath}/course?id=${c.id}"><img src="${c.img}" alt="Image" class="img-fluid"></a>
                                             </figure>
                                             <div class="course-inner-text py-4 px-4">
-                                                <span class="course-price">$${c.price}</span>
+                                                <span class="course-price">${c.price}$</span>
                                                 <div class="meta"><span class="icon-clock-o"></span>${c.lesson} Lessons / ${c.week} week</div>
                                                 <h3><a href="course?id=${c.id}">${c.name}</a></h3>
                                                 <p style="height: 120px">${c.instruction} </p>
@@ -87,8 +85,8 @@
                                                 <div class="py-3 px-4"><span class="icon-users"></span> ${c.numOfStudent} students</div>
                                                 
                                                 <c:if test="${sessionScope.user.type == 1}">
-                                                <div class="py-3 px-4 w-25 ml-auto border-left"><a href="${requestScope.contextPath}/manager/course/delete?id=${c.id}" onclick="return confirm('Do you want to delete this Course');" style="text-height: max-size" class="icon-delete"></a> </div>
-                                                <div class="py-3 px-4 w-25 ml-auto border-left"><a href="${requestScope.contextPath}/manager/course/update?id=${c.id}"  style="text-height: max-size" class="icon-input"></a> </div>
+                                                <!--<div class="py-3 px-4 w-25 ml-auto border-left"><a href="{requestScope.contextPath}/manager/course/delete?id={c.id}" onclick="return confirm('Do you want to delete this Course');" style="text-height: max-size" class="icon-delete"></a> </div>-->
+                                                <!--<div class="py-3 px-4 w-25 ml-auto border-left"><a href="{requestScope.contextPath}/manager/course/update?id={c.id}"  style="text-height: max-size" class="icon-input"></a> </div>-->
                                                 </c:if>
                                     
                                                 
@@ -106,16 +104,16 @@
                         <!-- Course Description -->
                     </div>
                     <div class="col-lg-3 pl-lg-3"> 
-                        <form>
+                        <form action="${pageContext.request.contextPath}/school">
 
                             <select name="teacher">
 
                                 <option value="0" selected>teacher</option>
                                 <c:forEach var="t" items="${requestScope.teachers}">
-                                    <option value="${t.id}">${t.name}</option>
+                                    <option <c:if test="${ requestScope.teacher == t.id}"> selected</c:if> value="${t.id}">${t.name}</option>
                                 </c:forEach>
                             </select>
-                            <input type="text" name="search" value="${requestScope.search}" />
+                            <input type="text" name="search" value="${pageContext.request.getParameter("search")}" />
                             <input type="submit" value="search" />
 
                             <div class="col-15 text-center">

@@ -83,7 +83,7 @@ public class CourseUpdateServlet extends HttpServlet {
             request.setAttribute("teachers", teachers);
             request.setAttribute("schedules", schedules);
             request.setAttribute("course", course);
-            request.getRequestDispatcher("../../course-create.jsp").forward(request, response);
+            request.getRequestDispatcher("../../view/course/manager/create-update.jsp").forward(request, response);
         }
 //        processRequest(request, response);
 

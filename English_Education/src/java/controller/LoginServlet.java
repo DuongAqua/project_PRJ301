@@ -58,6 +58,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         if(request.getSession().getAttribute("user")!=null){
             response.sendRedirect("home");
@@ -79,6 +81,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         AccountDB accDB = new AccountDB();
 

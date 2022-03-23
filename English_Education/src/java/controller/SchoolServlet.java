@@ -64,6 +64,7 @@ public class SchoolServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
 
         TeacherDB teacherDB = new TeacherDB();
@@ -78,45 +79,43 @@ public class SchoolServlet extends HttpServlet {
         request.setAttribute("contextPath", request.getContextPath());
         request.setAttribute("teachers", teachers);
         request.setAttribute("schedules", schedules);
-        
+
         String search = request.getParameter("search");
-        if (search == null || search.length() ==0 ) {
+        if (search == null || search.length() == 0) {
             search = "";
         }
         String teacher = request.getParameter("teacher");
-        if ( teacher == null) {
+        if (teacher == null) {
             teacher = "0";
         }
-        
-        
+
         int totalrow = courseDB.getRowCount(teacher, search);
         int pagesize = 6;
-  
+
         String page = request.getParameter("page");
-        if (page == null || page.length() == 0 ) {
-            page ="1";
+        if (page == null || page.length() == 0) {
+            page = "1";
         }
-        
-        int pageindex = Integer.parseInt(page); 
-        
-        
-        int totalpage = (totalrow%pagesize == 0)? (totalrow/pagesize) : (totalrow/pagesize + 1);
 
-        if(pageindex <1) {
-            response.sendRedirect(request.getContextPath()+"/school?page=1&search="+search+"&teacher="+teacher);
-        } else if(pageindex > totalpage){
-            
-            response.sendRedirect(request.getContextPath()+"/school?page="+totalpage+"&search="+search+"&teacher="+teacher);;
-        }
-        else{
-         ArrayList<Course> courses = courseDB.getPaggingSearchCourses(pagesize, pageindex, teacher, search);
-         
-        request.setAttribute("pageindex", pageindex);
+        int pageindex = Integer.parseInt(page);
+
+        int totalpage = (totalrow % pagesize == 0) ? (totalrow / pagesize) : (totalrow / pagesize + 1);
+
+        if (pageindex < 1) {
+            response.sendRedirect(request.getContextPath() + "/school?page=1&search=" + search + "&teacher=" + teacher);
+        } else if (pageindex > totalpage) {
+
+            response.sendRedirect(request.getContextPath() + "/school?page=" + totalpage + "&search=" + search + "&teacher=" + teacher);
+        } else {
+            ArrayList<Course> courses = courseDB.getPaggingSearchCourses(pagesize, pageindex, teacher, search);
+
+            request.setAttribute("pageindex", pageindex);
             request.setAttribute("totalpage", totalpage);
-        request.setAttribute("courses", courses);
-        request.setAttribute("teacher", teacher);
-
-        request.getRequestDispatcher("school.jsp").forward(request, response);
+            request.setAttribute("courses", courses);
+            request.setAttribute("teacher", teacher);
+            
+            
+            request.getRequestDispatcher("school.jsp").forward(request, response);
         }
 //        processRequest(request, response);
     }
