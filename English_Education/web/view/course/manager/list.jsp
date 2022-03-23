@@ -76,7 +76,7 @@
                                         <th style="width: 100px; text-align: center;">Schedule</th>
                                         <th style="width: 170px; text-align: center;">Lesson / Week</th>
                                         <th style="width: 150px; text-align: center;">Teacher</th>
-                                        <th style="text-align: center;">Instruction</th>
+                                        <th style="width: 600px; text-align: center;">Instruction</th>
                                         <th style="width: 60px; text-align: center;">Price</th>
                                         <th colspan="2"  style="width: 150px; text-align: center;">Action</th>
                                         
@@ -102,7 +102,7 @@
                             </table>
                             <a href="${requestScope.contextPath}/manager/course/create"><button class="btn btn-primary rounded-0" >create</button></a>
 
-<div class="col-15 text-center">
+                        <div class="col-15 text-center">
                                     <a class="" href="${requestScope.contextPath}/manager/course/list?page=${requestScope.pageindex -1}&search=${pageScope.search}&teacher=${requestScope.teacher}">Prev</a> 
                                     <c:choose>
                                         <c:when test="${requestScope.pageindex - 2<2}">
